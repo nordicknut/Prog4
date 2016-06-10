@@ -6,7 +6,7 @@ JP Brastad
 #define BST_H
 
 #include <vector>
-#include <stdexcept>
+//#include <stdexcept>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -43,7 +43,7 @@ public:
 		}
 	}
 
-	Iterator operator++()
+	Iterator operator++(int)
 	{
 		current++;
 		if (current == v.size())

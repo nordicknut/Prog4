@@ -14,7 +14,7 @@ void main()
 	tree.insert("Canada");
 	tree.insert("Russia");
 	tree.insert("France");
-	tree.insert("Canada");
+	tree.insert("Mexico");
 
 	// Create an Iterator
 	Iterator<string> iterator = tree.begin();
@@ -22,11 +22,11 @@ void main()
 	tree.insert("Texas"); // modify the tree
 
 						  // Traverse a binary tree using iterators
-	//while (iterator != tree.end())
-	//{
-	//	cout << *iterator << " ";
-	//	iterator++;
-	//}
+	while (iterator != tree.end())
+	{
+		cout << *iterator << endl;
+		iterator++;
+	}
 	// Texas is missing, FIX IT!!!!
 	system("pause");
 }
