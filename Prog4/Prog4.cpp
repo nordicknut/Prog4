@@ -14,6 +14,7 @@ void main()
 	tree.insert("Canada");
 	tree.insert("Russia");
 	tree.insert("France");
+	tree.insert("Canada");
 
 	// Create an Iterator
 	Iterator<string> iterator = tree.begin();
