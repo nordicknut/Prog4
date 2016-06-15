@@ -1,15 +1,16 @@
-/*
-JP Brastad
-*/
+
+	/*
+	JP Brastad
+	*/
 
 #ifndef BST_H
 #define BST_H
 
 #include <vector>
-//#include <stdexcept>
+#include <stdexcept>
 #include <iostream>
 #include <string>
-using namespace std;
+	using namespace std;
 
 template<typename T>
 class TreeNode
@@ -18,6 +19,10 @@ public:
 	T element; // Element contained in the node
 	TreeNode<T>* left; // Pointer to the left child
 	TreeNode<T>* right; // Pointer to the right child
+	~TreeNode()
+	{
+		//cout << element << " deleted" << endl;//used for debugging purposes when implementing clear() function.
+	}
 
 	TreeNode(T element) // Constructor
 	{
@@ -41,6 +46,14 @@ public:
 			treeToVector(p);
 			current = 0;
 		}
+	}
+
+	Iterator& operator++()
+	{
+		current++;
+		if (current == v.size())
+			current = -1; // The end
+		return *this;
 	}
 
 	Iterator operator++(int)
@@ -187,7 +200,7 @@ bool BST<T>::search(T element) const
 		else // Element matches current.element
 			return true; // Element is found
 
-		return false; // Element is not in the tree
+	return false; // Element is not in the tree
 }
 
 template <typename T>
@@ -225,10 +238,10 @@ bool BST<T>::insert(T element)
 				return false; // Duplicate node not inserted
 
 							  // Create the new node and attach it to the parent node
-			if (element < parent->element)
-				parent->left = createNewNode(element);
-			else
-				parent->right = createNewNode(element);
+		if (element < parent->element)
+			parent->left = createNewNode(element);
+		else
+			parent->right = createNewNode(element);
 	}
 
 	size++;
@@ -297,7 +310,21 @@ int BST<T>::getSize() const
 template <typename T>
 void BST<T>::clear()
 {
-	// Left as exercise
+	if (root == NULL) return;
+	clear(root->left);
+	clear(root->right);
+	root = NULL;
+	size = 0;
+}
+
+template<typename T>
+void BST<T>::clear(TreeNode<T>* root)
+{
+	if (root == NULL) return;
+	clear(root->left);
+	clear(root->right);
+	delete root->left;
+	delete root->right;
 }
 
 /* Return a path from the root leading to the specified element */
